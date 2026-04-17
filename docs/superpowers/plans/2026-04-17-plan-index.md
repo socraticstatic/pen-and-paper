@@ -207,7 +207,7 @@ Every PR blocks on:
 ## Repo conventions (set in Phase 0, honored forever)
 
 - **Package manager:** pnpm (faster, deterministic lockfile).
-- **Node:** v20 LTS, pinned via `.nvmrc`.
+- **Node:** v22 LTS, pinned via `.nvmrc`.
 - **Commit style:** Conventional Commits, enforced via commitlint.
 - **Branch model:** `main` is always deployable. Feature branches named `phase-<N>/<topic>` or `fix/<topic>`. PRs merge via squash + semantic-release-compatible message.
 - **Linting:** ESLint (eslint-config-next + @typescript-eslint + eslint-plugin-jsx-a11y).

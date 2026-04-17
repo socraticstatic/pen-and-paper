@@ -14,7 +14,7 @@
 
 ## Prerequisites (verify once before starting)
 
-- macOS / Linux shell with Node 20 LTS available (verify with `node -v`).
+- macOS / Linux shell with Node 22 LTS available (verify with `node -v`). `fnm install 22` if not present.
 - Docker Desktop installed and running (`docker info` succeeds).
 - `gh` CLI installed and authenticated (`gh auth status`).
 - A Vercel account owned by the user (not created in this plan).
@@ -30,7 +30,7 @@ pen-and-paper/
 ├── .env.example                      # committed; lists required vars
 ├── .env.local                        # gitignored; real values
 ├── .gitignore
-├── .nvmrc                            # "20"
+├── .nvmrc                            # "22"
 ├── .prettierrc.json
 ├── .prettierignore
 ├── .eslintrc.json
@@ -97,7 +97,7 @@ Expected: no error; `pnpm --version` returns `9.15.0` or later.
 
 Create `.nvmrc`:
 ```
-20
+22
 ```
 
 - [ ] **Step 3: Write initial `package.json`**
@@ -110,7 +110,7 @@ Create `package.json`:
   "private": true,
   "description": "A catalogue of one reader's journey through fountain pens and paired papers.",
   "engines": {
-    "node": ">=20 <21",
+    "node": ">=22 <23",
     "pnpm": ">=9"
   },
   "packageManager": "pnpm@9.15.0",
@@ -1162,7 +1162,7 @@ jobs:
           version: 9.15.0
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
@@ -1197,7 +1197,7 @@ jobs:
           version: 9.15.0
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec playwright install --with-deps chromium
@@ -1237,7 +1237,7 @@ jobs:
           version: 9.15.0
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm build

@@ -552,7 +552,7 @@ pen-and-paper/
 ├── .impeccable.md
 ├── README.md
 ├── .gitignore
-├── .nvmrc                                    # Node 20
+├── .nvmrc                                    # Node 22
 ├── .env.local.example
 ├── next.config.mjs
 ├── package.json

@@ -33,7 +33,7 @@ Design context lives in [`.impeccable.md`](.impeccable.md). Full design spec in 
 | Testing | Vitest (unit + component) &middot; Playwright (E2E) |
 | Hosting | Vercel |
 | Package manager | pnpm 9 |
-| Node | 20 LTS (pinned via `.nvmrc`) |
+| Node | 22 LTS (pinned via `.nvmrc`) |
 
 ---
 
@@ -41,7 +41,7 @@ Design context lives in [`.impeccable.md`](.impeccable.md). Full design spec in 
 
 ### Prerequisites
 
-- Node 20+ (use `.nvmrc`: `nvm use`)
+- Node 22 (use `.nvmrc`: `nvm use` or `fnm use`)
 - Docker Desktop (for local Postgres)
 - pnpm 9 (via corepack: `corepack enable && corepack prepare pnpm@9.15.0 --activate`)
 - A populated `.env.local` (copy `.env.example` and fill in values)

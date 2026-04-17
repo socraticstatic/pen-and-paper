@@ -20,6 +20,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - `CONTENT-LICENSE` (All Rights Reserved) for editorial writing, photography, and design assets.
 - Claude Code Stop hook (`.claude/hooks/readme-changelog-reminder.sh` + `.claude/settings.json`) that blocks turn-end when source files changed but README/CHANGELOG did not — enforces documentation discipline.
 
+### Changed
+- Plan and docs revised from Node 20 LTS to **Node 22 LTS** (current LTS; already installed in author's environment; Next.js 15 + Payload 3 both officially support it).
+
 ### Planned for 0.1.0 (Phase 0 — Scaffold)
 - Next.js 15 App Router project with TypeScript strict, ESLint, Prettier.
 - Payload CMS 3 installed in-process; `Users` and `Media` collections; admin at `/admin`.

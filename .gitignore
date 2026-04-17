@@ -42,3 +42,6 @@ src/payload-types.ts.tmp
 
 # Vercel
 .vercel/
+
+# Claude Code local overrides (team settings live in .claude/settings.json)
+.claude/settings.local.json

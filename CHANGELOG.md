@@ -18,6 +18,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - This `CHANGELOG.md`.
 - `LICENSE` (MIT) for source code.
 - `CONTENT-LICENSE` (All Rights Reserved) for editorial writing, photography, and design assets.
+- Claude Code Stop hook (`.claude/hooks/readme-changelog-reminder.sh` + `.claude/settings.json`) that blocks turn-end when source files changed but README/CHANGELOG did not — enforces documentation discipline.
 
 ### Planned for 0.1.0 (Phase 0 — Scaffold)
 - Next.js 15 App Router project with TypeScript strict, ESLint, Prettier.

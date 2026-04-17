@@ -1,15 +1,13 @@
-// TODO(task-7): Restore `withPayload` wrapper once @payloadcms/next is installed.
-// See docs/superpowers/plans/2026-04-17-phase-0-scaffold.md Task 7.
-// import { withPayload } from '@payloadcms/next/withPayload';
+import { withPayload } from '@payloadcms/next/withPayload';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  experimental: {
-    typedRoutes: true,
-  },
+  typedRoutes: true,
   images: {
-    remotePatterns: [{ protocol: 'https', hostname: '*.public.blob.vercel-storage.com' }],
+    remotePatterns: [
+      { protocol: 'https', hostname: '*.public.blob.vercel-storage.com' },
+    ],
   },
   async headers() {
     return [
@@ -25,4 +23,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withPayload(nextConfig);

@@ -17,20 +17,20 @@
 4. **DRY, YAGNI.** No feature not in the spec. No abstraction not justified by two concrete uses. Delete the unused code as we find it.
 5. **Editorial-first performance.** Client JS is earned, not assumed. Any new client component requires a bundle-size note in the PR.
 6. **Accessibility is not optional.** WCAG AA minimum, AAA body contrast. Every phase ends with an `impeccable-audit` pass.
-7. **Documentation lives alongside code.** README and CHANGELOG update *as part of* each phase's final commit — never "later."
+7. **Documentation lives alongside code.** README and CHANGELOG update _as part of_ each phase's final commit — never "later."
 8. **Reviewability.** Each phase closes with `requesting-code-review` skill before merging to `main`.
 
 ---
 
 ## Phase map
 
-| Phase | Ships | Plan file | Status |
-|---|---|---|---|
-| **0 — Scaffold** | Next.js + Payload + Postgres running locally and on Vercel; admin auth; CI green; zero features yet | `2026-04-17-phase-0-scaffold.md` | Detailed plan written |
+| Phase             | Ships                                                                                                                                         | Plan file                         | Status                         |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- | ------------------------------ |
+| **0 — Scaffold**  | Next.js + Payload + Postgres running locally and on Vercel; admin auth; CI green; zero features yet                                           | `2026-04-17-phase-0-scaffold.md`  | Detailed plan written          |
 | **1 — Editorial** | Typography, layout tokens, design-system primitives, Catalogue home, Specimen pages, Stage views, Field Notes, Colophon. First specimen live. | `2026-04-17-phase-1-editorial.md` | To be written before execution |
-| **2 — Register** | Pens collection, Papers collection, Register landing, Pen &amp; Paper detail pages, filters with URL-sync | `2026-04-17-phase-2-register.md` | To be written before execution |
-| **3 — Quiz** | Catalog index build pipeline, 6-question quiz flow, scoring algorithm, result page, share links | `2026-04-17-phase-3-quiz.md` | To be written before execution |
-| **4 — Launch** | Seed content (specimens, pens, papers, field notes), Lighthouse pass, domain, RSS, sitemap, deploy, smoke tests | `2026-04-17-phase-4-launch.md` | To be written before execution |
+| **2 — Register**  | Pens collection, Papers collection, Register landing, Pen &amp; Paper detail pages, filters with URL-sync                                     | `2026-04-17-phase-2-register.md`  | To be written before execution |
+| **3 — Quiz**      | Catalog index build pipeline, 6-question quiz flow, scoring algorithm, result page, share links                                               | `2026-04-17-phase-3-quiz.md`      | To be written before execution |
+| **4 — Launch**    | Seed content (specimens, pens, papers, field notes), Lighthouse pass, domain, RSS, sitemap, deploy, smoke tests                               | `2026-04-17-phase-4-launch.md`    | To be written before execution |
 
 Each phase is roughly one working week. Each phase is independently deployable. Each phase is a merge candidate.
 
@@ -41,6 +41,7 @@ Each phase is roughly one working week. Each phase is independently deployable. 
 **Goal:** Stand up the full stack (Next.js 15 App Router + Payload CMS 3 + Postgres + Vercel) with admin auth, CI, and zero application features. Any subsequent phase should be able to assume this foundation and never re-justify it.
 
 **Ships:**
+
 - Next.js 15 project with TypeScript strict, ESLint, Prettier, Vitest, Playwright configured.
 - Payload CMS 3 installed in-process, Postgres (Neon) attached locally via Docker and in production via Neon serverless.
 - `/admin` reachable, seeded with a single admin user; auth working end-to-end.
@@ -52,6 +53,7 @@ Each phase is roughly one working week. Each phase is independently deployable. 
 - Pre-commit hook (Husky + lint-staged) and commit-msg hook (commitlint).
 
 **Exit criteria** (all must hold before Phase 1 starts):
+
 - `pnpm test`, `pnpm test:e2e`, `pnpm lint`, `pnpm typecheck`, `pnpm build` all pass locally.
 - CI green on `main`.
 - Production admin URL returns 200 and requires login.
@@ -66,6 +68,7 @@ Each phase is roughly one working week. Each phase is independently deployable. 
 **Goal:** Make the catalogue readable. Deliver the design system and every surface that shows Micah's writing. A single specimen should be authorable via `/admin` and render at `/catalogue/[slug]` with the exact typography and layout shown in the approved craft mockup.
 
 **Ships:**
+
 - Design tokens (`tokens.css`), reset, typography, layout.
 - Self-hosted Fontshare faces (Editorial New, Supreme) in `public/fonts/` with `font-display: swap` and size-adjust fallbacks.
 - `SiteNav`, `Colophon` layout primitives.
@@ -82,6 +85,7 @@ Each phase is roughly one working week. Each phase is independently deployable. 
 - Lighthouse 95+ on the editorial surfaces (unseeded, with one Specimen).
 
 **Exit criteria:**
+
 - One Specimen authored entirely via admin, published, revalidates on save, renders at spec fidelity.
 - All visual details match the approved `craft-direction.html` mockup at ≥1200 px and ≤420 px.
 - CI green.
@@ -96,6 +100,7 @@ Each phase is roughly one working week. Each phase is independently deployable. 
 **Goal:** Make the catalogue searchable. The pens and papers grow as a reference independent of specimens. Filters live on the register; detail pages surface per-pen and per-paper. No quiz yet.
 
 **Ships:**
+
 - `Pens` and `Papers` Payload collections with full attribute schema (Core + Secondary tiers from spec §5).
 - Optional `Pairings` collection for curator picks.
 - Register landing `/register` (pens ↔ papers toggle; default pens alphabetical).
@@ -107,6 +112,7 @@ Each phase is roughly one working week. Each phase is independently deployable. 
 - Playwright tests for filter happy paths and empty-state copy.
 
 **Exit criteria:**
+
 - At least 8 pens and 5 papers authored via admin.
 - Filters URL-shareable; deep-link restores state.
 - Register JS bundle ≤ 25 KB gz.
@@ -122,6 +128,7 @@ Each phase is roughly one working week. Each phase is independently deployable. 
 **Goal:** Turn the catalogue into a guide. A first-time visitor answers six questions and gets three pen + paper recommendations, each linking to a specimen or a catalog entry.
 
 **Ships:**
+
 - `scripts/build-catalog-index.ts` — emits `public/catalog.json` from Pens + Papers at build time.
 - `QuizFlow`, `QuizQuestion`, `QuizResult` components (all client).
 - Scoring algorithm in `lib/scoring.ts`, pure function over `(answers, catalog) → rankedPairings`.
@@ -132,6 +139,7 @@ Each phase is roughly one working week. Each phase is independently deployable. 
 - Revalidation on Pen/Paper changes triggers `catalog.json` rebuild.
 
 **Exit criteria:**
+
 - Quiz runs offline after initial load (no API calls).
 - Scoring produces "sensible" results for 12 manually verified answer combinations.
 - Quiz JS bundle ≤ 30 KB gz; `catalog.json` ≤ 120 KB gz.
@@ -147,6 +155,7 @@ Each phase is roughly one working week. Each phase is independently deployable. 
 **Goal:** Take the site live. Seed content to the minimums. Harden performance, accessibility, and SEO. Deploy on a real domain.
 
 **Ships:**
+
 - Seed content authored via admin: 6+ specimens, 20+ pens, 15+ papers, 2+ field notes.
 - RSS feed route (`/feed.xml`) and sitemap.xml generator.
 - `robots.txt`, favicon, social meta (OG + Twitter cards).
@@ -158,6 +167,7 @@ Each phase is roughly one working week. Each phase is independently deployable. 
 - Launch announcement draft in `docs/launch/`.
 
 **Exit criteria:**
+
 - All §14 Success Criteria from the spec verified.
 - Production URL live on HTTPS; no mixed content; no console errors.
 - Lighthouse 95+ on four representative URLs on production (verified with `@lhci/cli`).
@@ -181,6 +191,7 @@ Each phase is roughly one working week. Each phase is independently deployable. 
 ### CI quality gates
 
 Every PR blocks on:
+
 - Lint (ESLint + Prettier)
 - Typecheck (`tsc --noEmit`)
 - Unit tests (Vitest) with coverage ≥ 85% on `lib/**` and `components/**`
@@ -226,4 +237,4 @@ Every PR blocks on:
 3. If the phase plan does not yet exist, write it using the `superpowers:writing-plans` skill against the spec, then execute.
 4. At phase landing: update README, update CHANGELOG, request code review, merge.
 
-*Index drafted 2026-04-17. Update when phase status, scope, or dependencies change.*
+_Index drafted 2026-04-17. Update when phase status, scope, or dependencies change._

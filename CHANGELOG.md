@@ -11,6 +11,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 ## [Unreleased]
 
 ### Added
+
 - Project scaffolding plan in `docs/superpowers/plans/` (phased index + Phase 0 detailed plan).
 - Design context in `.impeccable.md` (luxury-craft minimal; Editorial New &amp; Supreme; warm bone + tinted ink + oxidized copper).
 - Design spec in `docs/superpowers/specs/2026-04-17-pen-and-paper-design.md` covering IA, surfaces, Payload collections, pen/paper attributes, quiz flow, perf budget, accessibility, directory structure.
@@ -21,9 +22,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Claude Code Stop hook (`.claude/hooks/readme-changelog-reminder.sh` + `.claude/settings.json`) that blocks turn-end when source files changed but README/CHANGELOG did not — enforces documentation discipline.
 
 ### Changed
+
 - Plan and docs revised from Node 20 LTS to **Node 22 LTS** (current LTS; already installed in author's environment; Next.js 15 + Payload 3 both officially support it).
 
 ### Planned for 0.1.0 (Phase 0 — Scaffold)
+
 - Next.js 15 App Router project with TypeScript strict, ESLint, Prettier.
 - Payload CMS 3 installed in-process; `Users` and `Media` collections; admin at `/admin`.
 - Postgres via Docker Compose locally; Neon in production.
@@ -33,6 +36,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Vercel preview + production deploys; Vercel Blob for media.
 
 ### Planned for 0.2.0 (Phase 1 — Editorial)
+
 - Design tokens, typography system, self-hosted Fontshare faces.
 - `Specimens` and `FieldNotes` Payload collections.
 - Catalogue home (`/`): SpecimenHero · StageIndex · Chronology.
@@ -41,15 +45,18 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - On-demand revalidation tied to Payload `afterChange` hooks.
 
 ### Planned for 0.3.0 (Phase 2 — Register)
+
 - `Pens`, `Papers`, and optional `Pairings` collections with full attribute schema.
 - Register landing (`/register`) with URL-synced filters.
 - Pen detail and Paper detail pages with cross-references and affiliate rows.
 
 ### Planned for 0.4.0 (Phase 3 — Quiz)
+
 - Build-time `catalog.json` from Pens + Papers.
 - 6-question `/quiz` flow, scoring algorithm, and result page with shareable URLs.
 
 ### Planned for 1.0.0 (Phase 4 — Launch)
+
 - Seed content at launch minimums (6+ specimens, 20+ pens, 15+ papers, 2+ field notes).
 - RSS feed, sitemap, robots, social meta.
 - Final domain, production Neon branch, Vercel Analytics (or Plausible).
@@ -67,4 +74,4 @@ Initial commit. Planning &amp; design only; no application code yet.
 
 ---
 
-*Every future entry must be dated, versioned, and linked to the PR or commit range that introduced the change.*
+_Every future entry must be dated, versioned, and linked to the PR or commit range that introduced the change._

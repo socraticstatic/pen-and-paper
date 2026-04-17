@@ -16,6 +16,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Design spec in `docs/superpowers/specs/2026-04-17-pen-and-paper-design.md` covering IA, surfaces, Payload collections, pen/paper attributes, quiz flow, perf budget, accessibility, directory structure.
 - Initial `README.md` documenting stack and quickstart.
 - This `CHANGELOG.md`.
+- `LICENSE` (MIT) for source code.
+- `CONTENT-LICENSE` (All Rights Reserved) for editorial writing, photography, and design assets.
 
 ### Planned for 0.1.0 (Phase 0 — Scaffold)
 - Next.js 15 App Router project with TypeScript strict, ESLint, Prettier.

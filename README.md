@@ -193,7 +193,8 @@ This is a single-author project in Phase 1. External contributions deferred to P
 
 ## License
 
-TBD. Likely a permissive license for the code (MIT or Apache-2.0), and All Rights Reserved for editorial content and photography. Decision logged before Phase 4 launch.
+- **Source code**: [MIT](LICENSE).
+- **Editorial writing, photography, and design assets**: All Rights Reserved — see [CONTENT-LICENSE](CONTENT-LICENSE). Short quotations with attribution are welcome; republishing specimens, field notes, or photography is not.
 
 ---
 

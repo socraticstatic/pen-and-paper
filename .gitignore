@@ -1,0 +1,44 @@
+# deps
+node_modules/
+
+# next
+.next/
+out/
+
+# build + artifacts
+dist/
+*.tsbuildinfo
+
+# env
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# testing
+coverage/
+test-results/
+playwright-report/
+playwright/.cache/
+
+# editor / OS
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.example.json
+
+# Payload generated
+src/payload-types.ts.tmp
+
+# Brainstorming scratch (visual mockup companion, per-session state)
+.superpowers/
+
+# Vercel
+.vercel/

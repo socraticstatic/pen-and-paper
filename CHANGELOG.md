@@ -10,30 +10,29 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+Nothing yet.
+
+---
+
+## [0.1.0] — 2026-04-18 — Phase 0: Scaffold
+
 ### Added
 
-- Project scaffolding plan in `docs/superpowers/plans/` (phased index + Phase 0 detailed plan).
-- Design context in `.impeccable.md` (luxury-craft minimal; Editorial New &amp; Supreme; warm bone + tinted ink + oxidized copper).
-- Design spec in `docs/superpowers/specs/2026-04-17-pen-and-paper-design.md` covering IA, surfaces, Payload collections, pen/paper attributes, quiz flow, perf budget, accessibility, directory structure.
-- Initial `README.md` documenting stack and quickstart.
-- This `CHANGELOG.md`.
-- `LICENSE` (MIT) for source code.
-- `CONTENT-LICENSE` (All Rights Reserved) for editorial writing, photography, and design assets.
-- Claude Code Stop hook (`.claude/hooks/readme-changelog-reminder.sh` + `.claude/settings.json`) that blocks turn-end when source files changed but README/CHANGELOG did not — enforces documentation discipline.
+- Next.js 15 App Router project with TypeScript strict, ESLint (`next/core-web-vitals` + `jsx-a11y`), and Prettier.
+- Payload CMS 3 installed in-process; `Users` and `Media` collections; admin mounted at `/admin` and `/api/*`.
+- Payload import map generated (`src/app/(payload)/admin/importMap.js`) and typed.
+- Postgres via Docker Compose locally (`docker-compose.yml`); `.env.example` documenting all required variables.
+- Vitest with jsdom and a smoke test (`tests/unit/smoke.test.ts`).
+- Playwright with home and admin E2E tests; `chromium` + mobile-chrome projects.
+- Husky pre-commit hook (lint-staged + typecheck) and commit-msg hook (commitlint).
+- `@commitlint/config-conventional` enforcing Conventional Commits.
+- GitHub Actions CI: `quality` (lint + typecheck + unit), `e2e` (Playwright on Postgres service), `build` (Next.js production build).
+- `src/payload.d.ts` module declaration for `@payloadcms/next/css` side-effect import.
+- `importMap.d.ts` type declaration for Payload-generated importMap.
 
 ### Changed
 
-- Plan and docs revised from Node 20 LTS to **Node 22 LTS** (current LTS; already installed in author's environment; Next.js 15 + Payload 3 both officially support it).
-
-### Planned for 0.1.0 (Phase 0 — Scaffold)
-
-- Next.js 15 App Router project with TypeScript strict, ESLint, Prettier.
-- Payload CMS 3 installed in-process; `Users` and `Media` collections; admin at `/admin`.
-- Postgres via Docker Compose locally; Neon in production.
-- Vitest + Playwright scaffolding with passing smoke tests.
-- Husky + lint-staged + commitlint pre-commit hooks.
-- GitHub Actions CI: lint, typecheck, unit, E2E, build.
-- Vercel preview + production deploys; Vercel Blob for media.
+- Plan and docs revised from Node 20 LTS to **Node 22 LTS**.
 
 ### Planned for 0.2.0 (Phase 1 — Editorial)
 

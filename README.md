@@ -4,7 +4,7 @@ A catalogue of one reader's journey through fountain pens and paired papers, fro
 
 Each entry is a short literary piece tied to a specific pen + paper + ink. A growing reference catalogue sits alongside the writing so new readers can search, filter, and take the pairing quiz to find what might suit them.
 
-**Status:** Phase 0 — Scaffold — complete. Next.js 15 + Payload CMS 3 + Postgres running locally; admin auth working; CI green. See [`docs/superpowers/plans/2026-04-17-plan-index.md`](docs/superpowers/plans/2026-04-17-plan-index.md) for the phased build plan.
+**Status:** Phase 1 — Editorial — complete. All editorial surfaces live; CSS design system, Specimens + FieldNotes collections, on-demand revalidation, and Playwright E2E tests in place. Ready for Phase 2 (Register). See [`docs/superpowers/plans/2026-04-17-plan-index.md`](docs/superpowers/plans/2026-04-17-plan-index.md) for the phased build plan.
 
 ---
 
@@ -198,4 +198,4 @@ This is a single-author project in Phase 1. External contributions deferred to P
 
 ---
 
-_Last updated: 2026-04-18 (Phase 0 scaffold complete)._
+_Last updated: 2026-04-18 (Phase 1 editorial complete)._

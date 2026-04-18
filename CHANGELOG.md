@@ -14,6 +14,33 @@ Nothing yet.
 
 ---
 
+## [0.2.0] — 2026-04-18 — Phase 1: Editorial
+
+### Added
+
+- CSS design system: tokens, reset, typography, layout (`src/styles/`) with OKLCH warm bone palette, Editorial New + Supreme type scale, fluid clamp spacing.
+- Self-hosted Fontshare fonts: Editorial New (Regular, Italic) and Supreme (Light, Regular, Medium) via `@font-face` in `typography.css`; `public/fonts/` directory with `.gitkeep`.
+- Payload collections: `Specimens` (full Phase 1 schema — specimenNumber, title, subtitle, slug, stage, acquired, published, pen/paper relationships, ink group, figures array, essay, pairingRationale, affiliateOverrides, readingTime, draft), `FieldNotes` (title, slug, excerpt, topic, cover, body, relatedSpecimens, published, readingTime, draft), stub `Pens` and `Papers`.
+- On-demand revalidation: `src/lib/revalidate.ts` with `revalidateSpecimen` and `revalidateFieldNote`; `afterChange` hooks on Specimens and FieldNotes (draft-gated).
+- Lib utilities: `src/lib/stages.ts` (stage metadata + helpers), `src/lib/format.ts` (date formatting, reading-time estimation) — with Vitest unit tests (TDD, 15 assertions).
+- `SiteNav` client component with active-state highlighting and skip-to-content link.
+- Catalogue home page (`/`): SpecimenHero · StageIndex · Chronology.
+- Specimen detail page (`/catalogue/[slug]`): Tombstone + SpecimenEssay + FigureGrid + PairingFooter. `generateStaticParams` + `generateMetadata`.
+- Stage views (`/stages/[stage]`) for all four stages (I–IV). `generateStaticParams` + `generateMetadata`.
+- Field Notes index (`/field-notes`) and detail (`/field-notes/[slug]`).
+- Colophon page (`/colophon`).
+- Editorial 404 page (`not-found.tsx`).
+- Playwright E2E tests: home nav, skip-to-content, stage index, specimen 404, field notes index + 404.
+
+### Changed
+
+- `src/app/globals.css` now imports the four style sheets (`tokens`, `reset`, `typography`, `layout`).
+- `src/app/(frontend)/layout.tsx` updated with SiteNav, skip-to-content, and Fontshare preload hints.
+- `payload.config.ts` updated with Pens, Papers, Specimens, FieldNotes collections.
+- `src/payload-types.ts` regenerated with all Phase 1 collection types.
+
+---
+
 ## [0.1.0] — 2026-04-18 — Phase 0: Scaffold
 
 ### Added

@@ -1,0 +1,29 @@
+:root {
+  /* Palette (OKLCH warm bone) */
+  --ink-page: oklch(96% 0.01 80);
+  --ink-body: oklch(22% 0.01 70);
+  --ink-whisper: oklch(42% 0.015 70);
+  --ink-faint: oklch(68% 0.01 70);
+  --ink-rule: oklch(82% 0.01 75);
+  --ink-rule-heavy: oklch(68% 0.012 70);
+  --ink-accent: oklch(40% 0.08 30);
+  --ink-accent-whisper: oklch(72% 0.035 30);
+
+  /* Type families */
+  --font-display: 'Editorial New', 'Times New Roman', Georgia, serif;
+  --font-text: 'Supreme', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-label: 'Supreme', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-numeral: 'Editorial New', 'Times New Roman', Georgia, serif;
+
+  /* Spacing (fluid clamps) */
+  --space-sm: clamp(1rem, 2vw, 1.5rem);
+  --space-md: clamp(2rem, 4vw, 3.5rem);
+  --space-lg: clamp(3rem, 6vw, 6rem);
+  --space-xl: clamp(4rem, 10vw, 10rem);
+
+  /* Nav height (used for sticky-below calculations) */
+  --nav-h: 5rem;
+
+  /* Max content width */
+  --content-max: 1440px;
+}

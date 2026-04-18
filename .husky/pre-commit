@@ -1,3 +1,4 @@
 #!/usr/bin/env sh
+export PATH="$HOME/.local/share/fnm/node-versions/v22.22.1/installation/bin:$PATH"
 pnpm exec lint-staged
 pnpm typecheck

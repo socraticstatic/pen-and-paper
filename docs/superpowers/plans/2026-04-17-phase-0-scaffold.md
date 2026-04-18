@@ -84,6 +84,7 @@ pen-and-paper/
 ## Task 1 — Enable pnpm via corepack and initialize package.json
 
 **Files:**
+
 - Create: `package.json`
 - Create: `.nvmrc`
 - Create: `.gitignore`
@@ -96,6 +97,7 @@ Expected: no error; `pnpm --version` returns `9.15.0` or later.
 - [ ] **Step 2: Write `.nvmrc`**
 
 Create `.nvmrc`:
+
 ```
 22
 ```
@@ -103,6 +105,7 @@ Create `.nvmrc`:
 - [ ] **Step 3: Write initial `package.json`**
 
 Create `package.json`:
+
 ```json
 {
   "name": "pen-and-paper",
@@ -139,6 +142,7 @@ Create `package.json`:
 - [ ] **Step 4: Write `.gitignore`**
 
 Create `.gitignore`:
+
 ```
 # deps
 node_modules/
@@ -199,6 +203,7 @@ git commit -m "chore: initialize package.json and gitignore"
 ## Task 2 — TypeScript + Next.js dependencies
 
 **Files:**
+
 - Create: `tsconfig.json`
 - Create: `next.config.mjs`
 - Create: `src/app/globals.css`
@@ -210,6 +215,7 @@ git commit -m "chore: initialize package.json and gitignore"
 - [ ] **Step 1: Install Next.js + React + TypeScript**
 
 Run:
+
 ```bash
 pnpm add next@15 react@19 react-dom@19
 pnpm add -D typescript @types/node @types/react @types/react-dom cross-env
@@ -220,6 +226,7 @@ Expected: lockfile created; no errors.
 - [ ] **Step 2: Write `tsconfig.json`**
 
 Create `tsconfig.json`:
+
 ```json
 {
   "compilerOptions": {
@@ -260,6 +267,7 @@ Create `tsconfig.json`:
 - [ ] **Step 3: Write `next.config.mjs`**
 
 Create `next.config.mjs`:
+
 ```js
 import { withPayload } from '@payloadcms/next/withPayload';
 
@@ -270,9 +278,7 @@ const nextConfig = {
     typedRoutes: true,
   },
   images: {
-    remotePatterns: [
-      { protocol: 'https', hostname: '*.public.blob.vercel-storage.com' },
-    ],
+    remotePatterns: [{ protocol: 'https', hostname: '*.public.blob.vercel-storage.com' }],
   },
   async headers() {
     return [
@@ -329,11 +335,12 @@ export default function HomePage() {
 
 ```css
 :root {
-  --ink-page: oklch(96% 0.010 80);
-  --ink-body: oklch(22% 0.010 70);
+  --ink-page: oklch(96% 0.01 80);
+  --ink-body: oklch(22% 0.01 70);
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   background: var(--ink-page);
@@ -389,6 +396,7 @@ git commit -m "chore: scaffold Next.js 15 app router with placeholder home"
 ## Task 3 — ESLint, Prettier, editor config
 
 **Files:**
+
 - Create: `.eslintrc.json`
 - Create: `.eslintignore`
 - Create: `.prettierrc.json`
@@ -413,7 +421,12 @@ pnpm add -D eslint eslint-config-next eslint-plugin-jsx-a11y eslint-config-prett
   },
   "overrides": [
     {
-      "files": ["src/app/**/layout.tsx", "src/app/**/page.tsx", "src/app/**/route.ts", "src/app/**/not-found.tsx"],
+      "files": [
+        "src/app/**/layout.tsx",
+        "src/app/**/page.tsx",
+        "src/app/**/route.ts",
+        "src/app/**/not-found.tsx"
+      ],
       "rules": { "import/no-default-export": "off" }
     }
   ]
@@ -477,6 +490,7 @@ git commit -m "chore: configure ESLint and Prettier"
 ## Task 4 — Vitest unit test scaffolding
 
 **Files:**
+
 - Create: `vitest.config.ts`
 - Create: `tests/unit/smoke.test.ts`
 - Modify: `tsconfig.json` (add vitest types)
@@ -500,7 +514,12 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: ['./tests/unit/setup.ts'],
-    include: ['tests/unit/**/*.test.ts', 'tests/unit/**/*.test.tsx', 'src/**/*.test.ts', 'src/**/*.test.tsx'],
+    include: [
+      'tests/unit/**/*.test.ts',
+      'tests/unit/**/*.test.tsx',
+      'src/**/*.test.ts',
+      'src/**/*.test.tsx',
+    ],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'html', 'json-summary'],
@@ -530,6 +549,7 @@ import '@testing-library/jest-dom/vitest';
 - [ ] **Step 4: Write the failing smoke test**
 
 Create `tests/unit/smoke.test.ts`:
+
 ```ts
 import { describe, expect, it } from 'vitest';
 
@@ -549,6 +569,7 @@ describe('test harness', () => {
 
 Run: `pnpm test`
 Expected:
+
 ```
  ✓ tests/unit/smoke.test.ts (2)
  Test Files  1 passed (1)
@@ -567,6 +588,7 @@ git commit -m "test: add Vitest with jsdom and a smoke test"
 ## Task 5 — Playwright E2E scaffolding
 
 **Files:**
+
 - Create: `playwright.config.ts`
 - Create: `tests/e2e/home.spec.ts`
 
@@ -613,6 +635,7 @@ export default defineConfig({
 - [ ] **Step 3: Write the failing E2E test**
 
 Create `tests/e2e/home.spec.ts`:
+
 ```ts
 import { expect, test } from '@playwright/test';
 
@@ -646,6 +669,7 @@ git commit -m "test: add Playwright with home smoke test"
 ## Task 6 — Local Postgres via Docker Compose
 
 **Files:**
+
 - Create: `docker-compose.yml`
 - Create: `.env.example`
 - Create: `.env.local` (gitignored)
@@ -693,6 +717,7 @@ BLOB_READ_WRITE_TOKEN=
 - [ ] **Step 3: Create local `.env.local`**
 
 Generate a 64-char hex secret for Payload and write `.env.local`:
+
 ```bash
 cat > .env.local <<EOF
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
@@ -708,9 +733,11 @@ Expected: `.env.local` contains a unique secret.
 
 Run: `pnpm db:up`
 Expected: container starts. Then:
+
 ```bash
 docker compose exec postgres pg_isready -U penandpaper
 ```
+
 Expected: `accepting connections`.
 
 - [ ] **Step 5: Commit**
@@ -725,6 +752,7 @@ git commit -m "chore: add local Postgres via Docker Compose and env template"
 ## Task 7 — Install Payload CMS 3
 
 **Files:**
+
 - Create: `payload.config.ts`
 - Create: `src/collections/Users.ts`
 - Create: `src/collections/Media.ts`
@@ -896,6 +924,7 @@ git commit -m "feat(cms): install Payload 3 with Users and Media collections"
 ## Task 8 — Wire Payload into the Next.js App Router
 
 **Files:**
+
 - Create: `src/app/(payload)/admin/[[...segments]]/page.tsx`
 - Create: `src/app/(payload)/admin/[[...segments]]/not-found.tsx`
 - Create: `src/app/(payload)/admin/layout.tsx`
@@ -906,6 +935,7 @@ git commit -m "feat(cms): install Payload 3 with Users and Media collections"
 - [ ] **Step 1: Create admin layout**
 
 `src/app/(payload)/admin/layout.tsx`:
+
 ```tsx
 import type { Metadata } from 'next';
 import '@payloadcms/next/css';
@@ -922,6 +952,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 - [ ] **Step 2: Create admin page route**
 
 `src/app/(payload)/admin/[[...segments]]/page.tsx`:
+
 ```tsx
 import type { Metadata } from 'next';
 import { generatePageMetadata, RootPage } from '@payloadcms/next/views';
@@ -943,6 +974,7 @@ export default function Page({ params, searchParams }: Args) {
 - [ ] **Step 3: Create admin 404 route**
 
 `src/app/(payload)/admin/[[...segments]]/not-found.tsx`:
+
 ```tsx
 import { NotFoundPage, generatePageMetadata } from '@payloadcms/next/views';
 import config from '@payload-config';
@@ -958,9 +990,17 @@ export default function NotFound(args: Parameters<typeof NotFoundPage>[0]) {
 - [ ] **Step 4: Create API catch-all route**
 
 `src/app/(payload)/api/[...slug]/route.ts`:
+
 ```ts
 import config from '@payload-config';
-import { REST_DELETE, REST_GET, REST_OPTIONS, REST_PATCH, REST_POST, REST_PUT } from '@payloadcms/next/routes';
+import {
+  REST_DELETE,
+  REST_GET,
+  REST_OPTIONS,
+  REST_PATCH,
+  REST_POST,
+  REST_PUT,
+} from '@payloadcms/next/routes';
 
 export const GET = REST_GET(config);
 export const POST = REST_POST(config);
@@ -973,6 +1013,7 @@ export const OPTIONS = REST_OPTIONS(config);
 - [ ] **Step 5: Create GraphQL route**
 
 `src/app/(payload)/api/graphql/route.ts`:
+
 ```ts
 import config from '@payload-config';
 import { GRAPHQL_POST, REST_OPTIONS } from '@payloadcms/next/routes';
@@ -984,6 +1025,7 @@ export const OPTIONS = REST_OPTIONS(config);
 - [ ] **Step 6: Create GraphQL playground route (dev convenience)**
 
 `src/app/(payload)/api/graphql-playground/route.ts`:
+
 ```ts
 import config from '@payload-config';
 import { GRAPHQL_PLAYGROUND_GET } from '@payloadcms/next/routes';
@@ -1014,12 +1056,14 @@ git commit -m "feat(cms): mount Payload admin and API routes in Next.js App Rout
 ## Task 9 — Admin login E2E test
 
 **Files:**
+
 - Create: `tests/e2e/admin.spec.ts`
 - Create: `tests/e2e/fixtures/admin-user.ts`
 
 - [ ] **Step 1: Write the failing admin smoke test**
 
 `tests/e2e/admin.spec.ts`:
+
 ```ts
 import { expect, test } from '@playwright/test';
 
@@ -1057,6 +1101,7 @@ git commit -m "test(e2e): verify admin login flow rejects invalid credentials"
 ## Task 10 — Husky, lint-staged, commitlint
 
 **Files:**
+
 - Create: `.husky/pre-commit`
 - Create: `.husky/commit-msg`
 - Create: `.lintstagedrc.json`
@@ -1134,6 +1179,7 @@ git commit -m "chore: add Husky pre-commit, commitlint, and lint-staged"
 ## Task 11 — GitHub Actions CI
 
 **Files:**
+
 - Create: `.github/workflows/ci.yml`
 
 - [ ] **Step 1: Write the workflow**
@@ -1255,6 +1301,7 @@ git commit -m "ci: add lint, typecheck, unit, e2e, and build pipeline"
 ## Task 12 — README and CHANGELOG (authored and maintained from Phase 0)
 
 **Files:**
+
 - Create: `README.md`
 - Create: `CHANGELOG.md`
 
@@ -1263,6 +1310,7 @@ These two files are written in separate tasks in the parent checklist (see outer
 - [ ] **Step 1: Confirm README.md reflects Phase 0 reality**
 
 Read `README.md`. Verify:
+
 - Quickstart commands match `package.json` scripts.
 - Env variables listed match `.env.example`.
 - Stack section references Next.js 15, Payload 3, Postgres, Vercel.
@@ -1273,6 +1321,7 @@ If discrepancies exist, edit and commit.
 - [ ] **Step 2: Confirm CHANGELOG.md has a Phase 0 entry**
 
 Read `CHANGELOG.md`. Verify the `[0.1.0] — 2026-04-XX` entry documents:
+
 - Next.js + Payload scaffolding.
 - Postgres via Docker.
 - Lint/format/typecheck/test/e2e/build pipelines.
@@ -1311,15 +1360,16 @@ git push origin v0.1.0-phase-0
 
 ## Task 14 — Vercel + Neon deployment
 
-This is done once, interactively, with the user. It is *documented* here so a fresh engineer has the steps; do not attempt to automate without explicit user confirmation.
+This is done once, interactively, with the user. It is _documented_ here so a fresh engineer has the steps; do not attempt to automate without explicit user confirmation.
 
-- [ ] **Step 1: Create the Vercel project** *(user-assisted)*
+- [ ] **Step 1: Create the Vercel project** _(user-assisted)_
 
 Run: `pnpm dlx vercel link` in the repo. Follow the prompts to create a new Vercel project named `pen-and-paper`.
 
-- [ ] **Step 2: Attach a Neon Postgres database** *(user-assisted)*
+- [ ] **Step 2: Attach a Neon Postgres database** _(user-assisted)_
 
 In the Vercel dashboard → Project → Storage → Create Database → Neon → accept defaults. Vercel writes `DATABASE_URL` / `POSTGRES_URL` env variables. In Vercel → Settings → Environment Variables, set:
+
 - `DATABASE_URI` = the pooled Postgres URL provided by Neon.
 - `PAYLOAD_SECRET` = a unique 64-char hex (use `openssl rand -hex 32`).
 - `NEXT_PUBLIC_SITE_URL` = the Vercel preview URL (we'll change to the final domain in Phase 4).
@@ -1356,6 +1406,7 @@ Expected: all five pass.
 - [ ] **Step 2: Verify exit criteria against the spec**
 
 Read [spec §14](../specs/2026-04-17-pen-and-paper-design.md) and the index file's Phase 0 exit criteria. Tick each:
+
 - [ ] Dev server starts.
 - [ ] `/admin` reachable and auth-gated locally.
 - [ ] CI green on `main`.
@@ -1370,6 +1421,7 @@ Invoke `superpowers:requesting-code-review`. Share the PR(s) and the plan index.
 - [ ] **Step 4: Merge phase branch and tag**
 
 If work was done on a `phase-0/scaffold` branch:
+
 ```bash
 gh pr merge --squash --delete-branch
 git checkout main && git pull
@@ -1401,4 +1453,4 @@ In the repo, open an issue titled "Phase 1: Editorial" referencing the plan inde
 
 ---
 
-*Plan drafted 2026-04-17. Revise if the stack changes or if the index's Phase 0 scope changes.*
+_Plan drafted 2026-04-17. Revise if the stack changes or if the index's Phase 0 scope changes._

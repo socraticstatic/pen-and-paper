@@ -10,14 +10,23 @@ interface PairingFooterProps {
   paper?: { mill: string; line: string } | null;
 }
 
+function safeUrl(url: string | null | undefined): string | null {
+  if (!url) return null;
+  try {
+    return new URL(url).protocol === 'https:' ? url : null;
+  } catch {
+    return null;
+  }
+}
+
 export function PairingFooter({
   pairingRationale,
   affiliateOverrides,
   pen,
   paper,
 }: PairingFooterProps) {
-  const penUrl = affiliateOverrides?.penUrl;
-  const paperUrl = affiliateOverrides?.paperUrl;
+  const penUrl = safeUrl(affiliateOverrides?.penUrl);
+  const paperUrl = safeUrl(affiliateOverrides?.paperUrl);
 
   return (
     <footer

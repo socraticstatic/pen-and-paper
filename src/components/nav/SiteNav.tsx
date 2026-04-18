@@ -22,11 +22,18 @@ export function SiteNav() {
         <ul className="links">
           {links.map(({ href, label }) => {
             const isActive = href === '/' ? pathname === '/' : pathname.startsWith(href);
+            const unimplemented = ['/register'];
             return (
               <li key={href}>
-                <Link href={href} className={isActive ? 'current' : undefined}>
-                  {label}
-                </Link>
+                {unimplemented.includes(href) ? (
+                  <a href={href} className={isActive ? 'current' : undefined}>
+                    {label}
+                  </a>
+                ) : (
+                  <Link href={href} className={isActive ? 'current' : undefined}>
+                    {label}
+                  </Link>
+                )}
               </li>
             );
           })}

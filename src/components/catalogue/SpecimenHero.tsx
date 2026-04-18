@@ -105,9 +105,9 @@ export function SpecimenHero({ specimen }: SpecimenHeroProps) {
         }}
       >
         New to pens?{' '}
-        <Link href="/quiz" style={{ color: 'var(--ink-accent)' }}>
+        <a href="/quiz" style={{ color: 'var(--ink-accent)' }}>
           Begin with the quiz.
-        </Link>
+        </a>
       </p>
     </section>
   );

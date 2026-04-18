@@ -476,9 +476,12 @@
     grid-template-columns: 1fr;
   }
   .site-nav {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 1rem var(--space-md);
   }
   .site-nav .links {
-    display: none;
+    justify-content: flex-start;
+    gap: 1.5rem;
   }
 }

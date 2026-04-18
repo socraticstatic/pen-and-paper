@@ -26,7 +26,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm typecheck
-      - run: pnpm test --coverage
+      - run: pnpm test
 
   e2e:
     name: Playwright E2E
@@ -60,6 +60,7 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm payload migrate
       - run: pnpm test:e2e --project=chromium
       - if: failure()
         uses: actions/upload-artifact@v4
@@ -99,4 +100,5 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm payload migrate
       - run: pnpm build

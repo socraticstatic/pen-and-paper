@@ -46,7 +46,7 @@ jobs:
         ports:
           - 5432:5432
     env:
-      PAYLOAD_SECRET: ci-only-payload-secret-64chars-0000000000000000000000000000000
+      PAYLOAD_SECRET: ci-only-payload-secret-64chars-000000000000000000000000000000ab
       DATABASE_URI: postgres://penandpaper:penandpaper_dev@localhost:5432/penandpaper
       NEXT_PUBLIC_SITE_URL: http://localhost:3000
     steps:
@@ -86,7 +86,7 @@ jobs:
         ports:
           - 5432:5432
     env:
-      PAYLOAD_SECRET: ci-only-payload-secret-64chars-0000000000000000000000000000000
+      PAYLOAD_SECRET: ci-only-payload-secret-64chars-000000000000000000000000000000ab
       DATABASE_URI: postgres://penandpaper:penandpaper_dev@localhost:5432/penandpaper
       NEXT_PUBLIC_SITE_URL: http://localhost:3000
     steps:

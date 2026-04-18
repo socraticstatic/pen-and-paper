@@ -8,6 +8,12 @@ import sharpPkg from 'sharp';
 import { Users } from './src/collections/Users.ts';
 import { Media } from './src/collections/Media.ts';
 
+const payloadSecret = process.env.PAYLOAD_SECRET;
+const databaseUri = process.env.DATABASE_URI;
+
+if (!payloadSecret) throw new Error('PAYLOAD_SECRET env var is required');
+if (!databaseUri) throw new Error('DATABASE_URI env var is required');
+
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -17,13 +23,13 @@ export default buildConfig({
   },
   collections: [Users, Media],
   editor: lexicalEditor({}),
-  secret: process.env.PAYLOAD_SECRET || '',
+  secret: payloadSecret,
   typescript: {
     outputFile: path.resolve(process.cwd(), 'src/payload-types.ts'),
   },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI || '',
+      connectionString: databaseUri,
     },
   }),
   plugins: [

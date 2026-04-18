@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import '@/app/globals.css';
+import { SiteNav } from '@/components/nav/SiteNav';
 
 export const metadata: Metadata = {
   title: { template: '%s — Pen & Paper', default: 'Pen & Paper' },
@@ -32,7 +33,13 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
           crossOrigin="anonymous"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
+        <SiteNav />
+        <main id="main-content">{children}</main>
+      </body>
     </html>
   );
 }

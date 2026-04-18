@@ -36,7 +36,7 @@ export function FigurePlate({
       ) : (
         <div className={`fig-placeholder ${layout}`} aria-label={alt} role="img" />
       )}
-      {(caption ?? figureNumber != null) && (
+      {(caption != null || figureNumber != null) && (
         <figcaption className="fig-caption">
           {figureNumber != null && `Fig. ${figureNumber} — `}
           {caption}

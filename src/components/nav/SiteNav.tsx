@@ -6,10 +6,10 @@ import { usePathname } from 'next/navigation';
 export function SiteNav() {
   const pathname = usePathname();
 
-  const links = [
-    { href: '/', label: 'The Catalogue' },
-    { href: '/register', label: 'The Register' },
-    { href: '/field-notes', label: 'Field Notes' },
+  const links: { href: string; label: string; implemented?: boolean }[] = [
+    { href: '/', label: 'The Catalogue', implemented: true },
+    { href: '/register', label: 'The Register', implemented: false },
+    { href: '/field-notes', label: 'Field Notes', implemented: true },
   ];
 
   return (
@@ -20,17 +20,18 @@ export function SiteNav() {
         </Link>
         <span className="center">a catalogue of specimens</span>
         <ul className="links">
-          {links.map(({ href, label }) => {
+          {links.map(({ href, label, implemented }) => {
             const isActive = href === '/' ? pathname === '/' : pathname.startsWith(href);
-            const unimplemented = ['/register'];
             return (
               <li key={href}>
-                {unimplemented.includes(href) ? (
+                {implemented === false ? (
                   <a href={href} className={isActive ? 'current' : undefined}>
                     {label}
                   </a>
                 ) : (
-                  <Link href={href} className={isActive ? 'current' : undefined}>
+                  // Route is implemented — safe cast, typedRoutes verifies at build
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  <Link href={href as any} className={isActive ? 'current' : undefined}>
                     {label}
                   </Link>
                 )}

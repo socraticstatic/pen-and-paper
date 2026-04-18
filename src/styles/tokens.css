@@ -21,6 +21,9 @@
   --space-lg: clamp(3rem, 6vw, 6rem);
   --space-xl: clamp(4rem, 10vw, 10rem);
 
+  /* Horizontal page inset — dedicated so vertical spacing tokens stay unchanged */
+  --pad-x: clamp(2rem, 7vw, 8rem);
+
   /* Nav height (used for sticky-below calculations) */
   --nav-h: 5rem;
 

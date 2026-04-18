@@ -8,7 +8,7 @@ export function SiteNav() {
 
   const links: { href: string; label: string; implemented?: boolean }[] = [
     { href: '/', label: 'The Catalogue', implemented: true },
-    { href: '/register', label: 'The Register', implemented: false },
+    { href: '/register', label: 'The Register', implemented: true },
     { href: '/field-notes', label: 'Field Notes', implemented: true },
   ];
 

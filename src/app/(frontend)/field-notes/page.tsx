@@ -16,7 +16,7 @@ export default async function FieldNotesPage() {
   });
 
   return (
-    <div style={{ padding: 'var(--space-xl) var(--space-lg) var(--space-lg)' }}>
+    <div style={{ padding: 'var(--space-xl) var(--pad-x) var(--space-lg)' }}>
       <h1
         style={{
           fontFamily: 'var(--font-display)',

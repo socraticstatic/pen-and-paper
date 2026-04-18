@@ -26,6 +26,8 @@ export function formatDateShort(value: string | Date): string {
 const WORDS_PER_MINUTE = 200;
 
 export function estimateReadingTime(text: string): number {
-  const words = text.trim().split(/\s+/).length;
+  const trimmed = text.trim();
+  if (trimmed === '') return 0;
+  const words = trimmed.split(/\s+/).length;
   return Math.ceil(words / WORDS_PER_MINUTE);
 }

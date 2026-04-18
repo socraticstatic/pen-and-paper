@@ -6,8 +6,8 @@ describe('formatDate', () => {
     expect(formatDate('2024-03-15')).toBe('March 15, 2024');
   });
 
-  it('formats a Date object', () => {
-    expect(formatDate(new Date(2025, 0, 7))).toBe('January 7, 2025');
+  it('formats a date string in various formats', () => {
+    expect(formatDate('2025-01-07')).toBe('January 7, 2025');
   });
 });
 

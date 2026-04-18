@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const payload = await getPayload();
   const result = await payload.find({
     collection: 'specimens',
-    where: { slug: { equals: slug } },
+    where: { and: [{ slug: { equals: slug } }, { draft: { equals: false } }] },
     limit: 1,
     depth: 0,
   });

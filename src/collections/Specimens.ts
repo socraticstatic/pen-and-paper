@@ -83,15 +83,13 @@ export const Specimens: CollectionConfig = {
     {
       name: 'pen',
       type: 'relationship',
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      relationTo: 'pens' as any, // CollectionSlug union expands after Task 7 regenerates payload-types
+      relationTo: 'pens',
       admin: { description: 'The pen used in this specimen.' },
     },
     {
       name: 'paper',
       type: 'relationship',
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      relationTo: 'papers' as any, // CollectionSlug union expands after Task 7 regenerates payload-types
+      relationTo: 'papers',
       admin: { description: 'The paper used in this specimen.' },
     },
     {

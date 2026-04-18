@@ -69,6 +69,10 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    pens: Pen;
+    papers: Paper;
+    specimens: Specimen;
+    'field-notes': FieldNote;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -78,6 +82,10 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    pens: PensSelect<false> | PensSelect<true>;
+    papers: PapersSelect<false> | PapersSelect<true>;
+    specimens: SpecimensSelect<false> | SpecimensSelect<true>;
+    'field-notes': FieldNotesSelect<false> | FieldNotesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -198,6 +206,148 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pens".
+ */
+export interface Pen {
+  id: number;
+  make: string;
+  model: string;
+  slug: string;
+  draft?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "papers".
+ */
+export interface Paper {
+  id: number;
+  mill: string;
+  line: string;
+  slug: string;
+  draft?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "specimens".
+ */
+export interface Specimen {
+  id: number;
+  /**
+   * Unique sequential integer. 1, 2, 3, …
+   */
+  specimenNumber: number;
+  title: string;
+  subtitle?: string | null;
+  slug: string;
+  stage: 'first-pen' | 'curious' | 'collector' | 'savant';
+  acquired: string;
+  published?: string | null;
+  /**
+   * The pen used in this specimen.
+   */
+  pen?: (number | null) | Pen;
+  /**
+   * The paper used in this specimen.
+   */
+  paper?: (number | null) | Paper;
+  ink?: {
+    maker?: string | null;
+    color?: string | null;
+    notes?: string | null;
+  };
+  figures?:
+    | {
+        src: number | Media;
+        alt: string;
+        caption?: string | null;
+        layout?: ('square' | 'wide' | 'portrait') | null;
+        id?: string | null;
+      }[]
+    | null;
+  essay: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  pairingRationale?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  affiliateOverrides?: {
+    penUrl?: string | null;
+    paperUrl?: string | null;
+    inkUrl?: string | null;
+  };
+  /**
+   * Auto-computed from essay word count.
+   */
+  readingTime?: number | null;
+  draft?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "field-notes".
+ */
+export interface FieldNote {
+  id: number;
+  title: string;
+  slug: string;
+  excerpt: string;
+  topic: 'nib' | 'ink' | 'paper' | 'history' | 'technique';
+  cover?: (number | null) | Media;
+  body: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  relatedSpecimens?: (number | Specimen)[] | null;
+  published: string;
+  readingTime?: number | null;
+  draft?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -227,6 +377,22 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'pens';
+        value: number | Pen;
+      } | null)
+    | ({
+        relationTo: 'papers';
+        value: number | Paper;
+      } | null)
+    | ({
+        relationTo: 'specimens';
+        value: number | Specimen;
+      } | null)
+    | ({
+        relationTo: 'field-notes';
+        value: number | FieldNote;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -354,6 +520,94 @@ export interface MediaSelect<T extends boolean = true> {
               filename?: T;
             };
       };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pens_select".
+ */
+export interface PensSelect<T extends boolean = true> {
+  make?: T;
+  model?: T;
+  slug?: T;
+  draft?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "papers_select".
+ */
+export interface PapersSelect<T extends boolean = true> {
+  mill?: T;
+  line?: T;
+  slug?: T;
+  draft?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "specimens_select".
+ */
+export interface SpecimensSelect<T extends boolean = true> {
+  specimenNumber?: T;
+  title?: T;
+  subtitle?: T;
+  slug?: T;
+  stage?: T;
+  acquired?: T;
+  published?: T;
+  pen?: T;
+  paper?: T;
+  ink?:
+    | T
+    | {
+        maker?: T;
+        color?: T;
+        notes?: T;
+      };
+  figures?:
+    | T
+    | {
+        src?: T;
+        alt?: T;
+        caption?: T;
+        layout?: T;
+        id?: T;
+      };
+  essay?: T;
+  pairingRationale?: T;
+  affiliateOverrides?:
+    | T
+    | {
+        penUrl?: T;
+        paperUrl?: T;
+        inkUrl?: T;
+      };
+  readingTime?: T;
+  draft?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "field-notes_select".
+ */
+export interface FieldNotesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  excerpt?: T;
+  topic?: T;
+  cover?: T;
+  body?: T;
+  relatedSpecimens?: T;
+  published?: T;
+  readingTime?: T;
+  draft?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

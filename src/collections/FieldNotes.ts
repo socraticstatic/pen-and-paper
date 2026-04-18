@@ -73,8 +73,7 @@ export const FieldNotes: CollectionConfig = {
     {
       name: 'relatedSpecimens',
       type: 'relationship',
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      relationTo: 'specimens' as any, // CollectionSlug union expands after Task 7 regenerates payload-types
+      relationTo: 'specimens',
       hasMany: true,
     },
     {

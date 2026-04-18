@@ -9,6 +9,7 @@ import { Users } from './src/collections/Users.ts';
 import { Media } from './src/collections/Media.ts';
 import { Pens } from './src/collections/Pens.ts';
 import { Papers } from './src/collections/Papers.ts';
+import { Specimens } from './src/collections/Specimens.ts';
 
 const payloadSecret = process.env.PAYLOAD_SECRET;
 const databaseUri = process.env.DATABASE_URI;
@@ -23,7 +24,7 @@ export default buildConfig({
       titleSuffix: ' — Pen & Paper Admin',
     },
   },
-  collections: [Users, Media, Pens, Papers],
+  collections: [Users, Media, Pens, Papers, Specimens],
   editor: lexicalEditor({}),
   secret: payloadSecret,
   typescript: {

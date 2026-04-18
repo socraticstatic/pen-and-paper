@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import { estimateReadingTime } from '../lib/format.ts';
+import { revalidateFieldNote } from '../lib/revalidate.ts';
 
 export const FieldNotes: CollectionConfig = {
   slug: 'field-notes',
@@ -28,6 +29,13 @@ export const FieldNotes: CollectionConfig = {
           data.readingTime = estimateReadingTime(JSON.stringify(data.body));
         }
         return data;
+      },
+    ],
+    afterChange: [
+      ({ doc }: { doc: { slug: string; draft?: boolean } }) => {
+        if (!doc.draft) {
+          revalidateFieldNote(doc.slug);
+        }
       },
     ],
   },

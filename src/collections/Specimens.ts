@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import { estimateReadingTime } from '../lib/format.ts';
+import { revalidateSpecimen } from '../lib/revalidate.ts';
 
 export const Specimens: CollectionConfig = {
   slug: 'specimens',
@@ -28,6 +29,13 @@ export const Specimens: CollectionConfig = {
           data.readingTime = estimateReadingTime(JSON.stringify(data.essay));
         }
         return data;
+      },
+    ],
+    afterChange: [
+      ({ doc }: { doc: { slug: string; draft?: boolean } }) => {
+        if (!doc.draft) {
+          revalidateSpecimen(doc.slug);
+        }
       },
     ],
   },

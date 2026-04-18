@@ -1,0 +1,13 @@
+:root {
+  --ink-page: oklch(96% 0.01 80);
+  --ink-body: oklch(22% 0.01 70);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--ink-page);
+  color: var(--ink-body);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}

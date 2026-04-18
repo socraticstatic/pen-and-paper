@@ -4,14 +4,14 @@ A catalogue of one reader's journey through fountain pens and paired papers, fro
 
 Each entry is a short literary piece tied to a specific pen + paper + ink. A growing reference catalogue sits alongside the writing so new readers can search, filter, and take the pairing quiz to find what might suit them.
 
-**Status:** Pre-Phase 0. Scaffolding has not started. See [`docs/superpowers/plans/2026-04-17-plan-index.md`](docs/superpowers/plans/2026-04-17-plan-index.md) for the phased build plan.
+**Status:** Phase 0 — Scaffold — complete. Next.js 15 + Payload CMS 3 + Postgres running locally; admin auth working; CI green. See [`docs/superpowers/plans/2026-04-17-plan-index.md`](docs/superpowers/plans/2026-04-17-plan-index.md) for the phased build plan.
 
 ---
 
 ## What this is
 
-- **Editorial-first.** The story is the front door. Utility is reached *through* the writing, never around it.
-- **Cataloguing, not blogging.** Every entry is a numbered *Specimen* with a typographic tombstone.
+- **Editorial-first.** The story is the front door. Utility is reached _through_ the writing, never around it.
+- **Cataloguing, not blogging.** Every entry is a numbered _Specimen_ with a typographic tombstone.
 - **CMS-driven.** Specimens, pens, papers, field notes, and pairings are authored via a Payload admin at `/admin`.
 - **Quiz-guided.** A six-question quiz scores the catalogue against reader preferences and returns three pen + paper recommendations.
 - **Luxury-craft minimal.** Warm bone ground, tinted ink, one whisper of oxidized copper. Editorial New &amp; Supreme typography. No card shadows, no gradients, no side-stripe borders.
@@ -22,18 +22,18 @@ Design context lives in [`.impeccable.md`](.impeccable.md). Full design spec in 
 
 ## Stack
 
-| Layer | Pick |
-|---|---|
-| Framework | Next.js 15 App Router (TypeScript strict, React 19 RSC) |
-| CMS | Payload CMS 3 (installed in-process, admin at `/admin`) |
-| Database | Postgres (Docker locally; Neon in production) |
-| Media storage | Vercel Blob |
-| Styling | Vanilla CSS with custom properties; no utility framework |
-| Typography | Fontshare self-hosted (Editorial New, Supreme) |
-| Testing | Vitest (unit + component) &middot; Playwright (E2E) |
-| Hosting | Vercel |
-| Package manager | pnpm 9 |
-| Node | 22 LTS (pinned via `.nvmrc`) |
+| Layer           | Pick                                                     |
+| --------------- | -------------------------------------------------------- |
+| Framework       | Next.js 15 App Router (TypeScript strict, React 19 RSC)  |
+| CMS             | Payload CMS 3 (installed in-process, admin at `/admin`)  |
+| Database        | Postgres (Docker locally; Neon in production)            |
+| Media storage   | Vercel Blob                                              |
+| Styling         | Vanilla CSS with custom properties; no utility framework |
+| Typography      | Fontshare self-hosted (Editorial New, Supreme)           |
+| Testing         | Vitest (unit + component) &middot; Playwright (E2E)      |
+| Hosting         | Vercel                                                   |
+| Package manager | pnpm 9                                                   |
+| Node            | 22 LTS (pinned via `.nvmrc`)                             |
 
 ---
 
@@ -74,24 +74,24 @@ open http://localhost:3000/admin
 
 ### Common commands
 
-| Command | What it does |
-|---|---|
-| `pnpm dev` | Start Next.js dev server on `:3000`. |
-| `pnpm build` | Production build. |
-| `pnpm start` | Serve the production build locally. |
-| `pnpm lint` | ESLint (with `next/core-web-vitals` + jsx-a11y). |
-| `pnpm lint:fix` | Lint and auto-fix. |
-| `pnpm format` | Prettier-format the repo. |
-| `pnpm format:check` | Prettier check (fails on drift). |
-| `pnpm typecheck` | `tsc --noEmit`. |
-| `pnpm test` | Vitest unit + component tests. |
-| `pnpm test:watch` | Vitest in watch mode. |
-| `pnpm test:e2e` | Playwright E2E (spawns dev server). |
-| `pnpm test:e2e:ui` | Playwright UI mode. |
-| `pnpm payload` | Payload CLI proxy (`generate:types`, `migrate`, etc.). |
-| `pnpm payload:generate-types` | Regenerate `src/payload-types.ts` from collections. |
-| `pnpm db:up` | Start local Postgres via Docker Compose. |
-| `pnpm db:down` | Stop local Postgres. |
+| Command                       | What it does                                           |
+| ----------------------------- | ------------------------------------------------------ |
+| `pnpm dev`                    | Start Next.js dev server on `:3000`.                   |
+| `pnpm build`                  | Production build.                                      |
+| `pnpm start`                  | Serve the production build locally.                    |
+| `pnpm lint`                   | ESLint (with `next/core-web-vitals` + jsx-a11y).       |
+| `pnpm lint:fix`               | Lint and auto-fix.                                     |
+| `pnpm format`                 | Prettier-format the repo.                              |
+| `pnpm format:check`           | Prettier check (fails on drift).                       |
+| `pnpm typecheck`              | `tsc --noEmit`.                                        |
+| `pnpm test`                   | Vitest unit + component tests.                         |
+| `pnpm test:watch`             | Vitest in watch mode.                                  |
+| `pnpm test:e2e`               | Playwright E2E (spawns dev server).                    |
+| `pnpm test:e2e:ui`            | Playwright UI mode.                                    |
+| `pnpm payload`                | Payload CLI proxy (`generate:types`, `migrate`, etc.). |
+| `pnpm payload:generate-types` | Regenerate `src/payload-types.ts` from collections.    |
+| `pnpm db:up`                  | Start local Postgres via Docker Compose.               |
+| `pnpm db:down`                | Stop local Postgres.                                   |
 
 ---
 
@@ -99,12 +99,12 @@ open http://localhost:3000/admin
 
 Copy `.env.example` to `.env.local` and fill in values:
 
-| Variable | Required | Description |
-|---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | yes | The site's public URL. `http://localhost:3000` locally. |
-| `PAYLOAD_SECRET` | yes | 64-char hex secret for Payload auth. Generate with `openssl rand -hex 32`. |
-| `DATABASE_URI` | yes | Postgres connection string. `postgres://penandpaper:penandpaper_dev@localhost:5432/penandpaper` locally. |
-| `BLOB_READ_WRITE_TOKEN` | prod only | Vercel Blob token. Empty locally; set in production via Vercel dashboard. |
+| Variable                | Required  | Description                                                                                              |
+| ----------------------- | --------- | -------------------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL`  | yes       | The site's public URL. `http://localhost:3000` locally.                                                  |
+| `PAYLOAD_SECRET`        | yes       | 64-char hex secret for Payload auth. Generate with `openssl rand -hex 32`.                               |
+| `DATABASE_URI`          | yes       | Postgres connection string. `postgres://penandpaper:penandpaper_dev@localhost:5432/penandpaper` locally. |
+| `BLOB_READ_WRITE_TOKEN` | prod only | Vercel Blob token. Empty locally; set in production via Vercel dashboard.                                |
 
 Never commit `.env.local`. It is gitignored.
 
@@ -198,4 +198,4 @@ This is a single-author project in Phase 1. External contributions deferred to P
 
 ---
 
-*Last updated: 2026-04-17 (plan drafted; implementation has not begun).*
+_Last updated: 2026-04-18 (Phase 0 scaffold complete)._

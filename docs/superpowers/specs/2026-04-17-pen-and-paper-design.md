@@ -20,7 +20,7 @@ Phase 1 is single-author. No public accounts, no UGC, no community. All content 
 
 - **Story-first funnel.** First-time visitor lands on a single Specimen hero, not a nav menu, not a grid of cards, not a search box.
 - **Catalogue, not blog.** Entries are numbered specimens with typographic tombstones. Nothing feels disposable.
-- **Four primary surfaces, clear hierarchy.** Catalogue → Register → Quiz → Field Notes. Utility is reached *through* editorial.
+- **Four primary surfaces, clear hierarchy.** Catalogue → Register → Quiz → Field Notes. Utility is reached _through_ editorial.
 - **CMS-driven authoring.** Specimens, Pens, Papers, Pairings, Field Notes all edited via Payload's admin UI. Non-technical editing from day one.
 - **Typed end-to-end.** Payload collections generate TypeScript types; front-end imports them; zero `any` between CMS and UI.
 - **Luxury-craft minimal aesthetic.** Warm bone, tinted ink, one whisper of oxidized copper. Editorial New + Supreme. Asymmetric editorial grid. Rule lines as structure.
@@ -63,7 +63,7 @@ Phase 1 is single-author. No public accounts, no UGC, no community. All content 
 
 ### Navigation
 
-Sticky top bar: wordmark left, italic center tagline, three links right — **The Catalogue · The Register · Field Notes**. The Quiz is not in top-nav; it's reached via a quiet link from the home hero and from the Register header ("*New to pens? Start here.*"). Current surface marked in oxidized-copper. No dropdowns. No hamburger. Mobile collapses to wordmark + overflow.
+Sticky top bar: wordmark left, italic center tagline, three links right — **The Catalogue · The Register · Field Notes**. The Quiz is not in top-nav; it's reached via a quiet link from the home hero and from the Register header ("_New to pens? Start here._"). Current surface marked in oxidized-copper. No dropdowns. No hamburger. Mobile collapses to wordmark + overflow.
 
 ---
 
@@ -79,14 +79,15 @@ Three stacked blocks. No carousel, no floating CTAs.
 
 **Block C — Recent Chronology.** Rule-lined list of five most recent specimens. Each row: specimen number · title · pairing summary · stage + date.
 
-**Quiz invitation**: a single italic line below the hero, before Stage Index: *"New to pens? Begin with the quiz."* (links to `/quiz`).
+**Quiz invitation**: a single italic line below the hero, before Stage Index: _"New to pens? Begin with the quiz."_ (links to `/quiz`).
 
 ### 4.2 Specimen Entry (`/catalogue/[slug]`)
 
 Two-column desktop (tombstone left, essay right). As detailed in approved mockup.
 
 Entry footer:
-- Pairing rationale paragraph (*"Why these three"*).
+
+- Pairing rationale paragraph (_"Why these three"_).
 - Cross-links: "Also written with this pen" / "Also written on this paper" as tracked-small-caps sentences.
 - Affiliate row.
 
@@ -128,6 +129,7 @@ Same architecture as Pen Detail, adapted:
 Client-rendered flow. A single column, one question at a time, editorial in feel — not a product-survey.
 
 **Architecture:**
+
 - 6 questions, each on its own screen within the same route (no page reload).
 - Typography: questions in Editorial New (36–52px fluid), options as tracked-small-caps rows separated by rule lines.
 - Progress indicator: a single hairline at the top that advances as the user answers, not a numbered progress bar.
@@ -135,6 +137,7 @@ Client-rendered flow. A single column, one question at a time, editorial in feel
 - No cancel / start-over / reset buttons — the user can close the tab. If they return, state is not persisted in Phase 1.
 
 **Questions (v1):**
+
 1. **Experience** — "Have you written with a fountain pen before?" (Never · A little · Regularly · I have a collection)
 2. **Budget** — "What feels like the right investment right now?" (Under $50 · $50–$200 · $200–$500 · $500+ · Open)
 3. **Hand pressure** — "When you write, you tend to press..." (Very lightly · Lightly · Normally · Firmly)
@@ -145,10 +148,11 @@ Client-rendered flow. A single column, one question at a time, editorial in feel
 Each answer assigns weighted scores against Pen and Paper attribute tags (e.g. "Glass-smooth" scores +3 for pens with `feedback: glass-smooth`).
 
 **Result (`/quiz/result?...`):**
+
 - Top three pen+paper pairings, scored by the sum of matching attributes.
 - Each pairing rendered as a miniature Specimen tombstone: pen name + nib + paper + tier.
-- If a Specimen exists that used this exact pair, link to it (*"Read the specimen entry →"*).
-- If no Specimen exists, show the catalog entry (*"Not yet catalogued. Here's the data →"*).
+- If a Specimen exists that used this exact pair, link to it (_"Read the specimen entry →"_).
+- If no Specimen exists, show the catalog entry (_"Not yet catalogued. Here's the data →"_).
 - Share link is the URL-encoded answer set; shareable and deep-linkable.
 - Quiz result is a client-side computed page; not pre-rendered. Scoring runs entirely in browser against a pre-built `catalog.json` index.
 
@@ -163,6 +167,7 @@ Single quiet page: about the site, the author, typography, palette, principles.
 ### 4.10 Admin (`/admin`)
 
 Payload's admin UI, customized with:
+
 - Site theme (warm bone ground where Payload permits CSS override; otherwise default Payload dark).
 - Custom collection groupings: **Editorial** (Specimens, Field Notes) · **Catalogue** (Pens, Papers, Pairings) · **Media**.
 - Author view is single-user; roles left simple (single admin role, expandable in Phase 2).
@@ -353,29 +358,29 @@ Pairings are optional. Most pairings in Phase 1 are **derived** from Specimens (
 
 All components in `src/components/` unless noted. Organized by surface.
 
-| Component | Type | Responsibility |
-|---|---|---|
-| `SiteNav` | `.tsx` (RSC) | Sticky top bar with wordmark, tagline, three links, current marker. |
-| `SpecimenHero` | `.tsx` (RSC) | Home hero: eyebrow + giant number + title + lede + meta + figure. |
-| `StageIndex` | `.tsx` (RSC) | Four-card stage row with active state. |
-| `Chronology` | `.tsx` (RSC) | Rule-lined list of recent specimens. |
-| `Tombstone` | `.tsx` (RSC) | Left-column specimen metadata. |
-| `SpecimenEssay` | `.tsx` (RSC) | Rich-text essay renderer (Payload's Lexical output → React). |
-| `FigurePlate` | `.tsx` (RSC) | Single figure + caption + figure number. |
-| `FigureGrid` | `.tsx` (RSC) | Multi-figure layouts. |
-| `PairingFooter` | `.tsx` (RSC) | Cross-links + affiliate row. |
-| `RegisterHead` | `.tsx` (RSC) | Register hero heading. |
-| `RegisterFilters` | `.tsx` (Client) | Filters with URL-sync state. |
-| `RegisterList` | `.tsx` (RSC or client) | List of pens or papers; rows. |
-| `PenTombstone` | `.tsx` (RSC) | Pen detail page label block. |
-| `PaperTombstone` | `.tsx` (RSC) | Paper detail page label block with bleed/show-through indicators. |
-| `InkBehaviorMeter` | `.tsx` (RSC) | Small typographic meter (not a progress bar) for 0–5 ratings. |
-| `QuizFlow` | `.tsx` (Client) | Multi-step quiz controller; URL-state for shareable answers. |
-| `QuizQuestion` | `.tsx` (Client) | Single-question screen. |
-| `QuizResult` | `.tsx` (Client) | Top-3 pairing result cards. |
-| `FieldNoteCard` | `.tsx` (RSC) | Index row. |
-| `Colophon` | `.tsx` (RSC) | Page footer colophon. |
-| `TypeSet` | `.tsx` (RSC) | Prose wrapper enforcing body typography. |
+| Component          | Type                   | Responsibility                                                      |
+| ------------------ | ---------------------- | ------------------------------------------------------------------- |
+| `SiteNav`          | `.tsx` (RSC)           | Sticky top bar with wordmark, tagline, three links, current marker. |
+| `SpecimenHero`     | `.tsx` (RSC)           | Home hero: eyebrow + giant number + title + lede + meta + figure.   |
+| `StageIndex`       | `.tsx` (RSC)           | Four-card stage row with active state.                              |
+| `Chronology`       | `.tsx` (RSC)           | Rule-lined list of recent specimens.                                |
+| `Tombstone`        | `.tsx` (RSC)           | Left-column specimen metadata.                                      |
+| `SpecimenEssay`    | `.tsx` (RSC)           | Rich-text essay renderer (Payload's Lexical output → React).        |
+| `FigurePlate`      | `.tsx` (RSC)           | Single figure + caption + figure number.                            |
+| `FigureGrid`       | `.tsx` (RSC)           | Multi-figure layouts.                                               |
+| `PairingFooter`    | `.tsx` (RSC)           | Cross-links + affiliate row.                                        |
+| `RegisterHead`     | `.tsx` (RSC)           | Register hero heading.                                              |
+| `RegisterFilters`  | `.tsx` (Client)        | Filters with URL-sync state.                                        |
+| `RegisterList`     | `.tsx` (RSC or client) | List of pens or papers; rows.                                       |
+| `PenTombstone`     | `.tsx` (RSC)           | Pen detail page label block.                                        |
+| `PaperTombstone`   | `.tsx` (RSC)           | Paper detail page label block with bleed/show-through indicators.   |
+| `InkBehaviorMeter` | `.tsx` (RSC)           | Small typographic meter (not a progress bar) for 0–5 ratings.       |
+| `QuizFlow`         | `.tsx` (Client)        | Multi-step quiz controller; URL-state for shareable answers.        |
+| `QuizQuestion`     | `.tsx` (Client)        | Single-question screen.                                             |
+| `QuizResult`       | `.tsx` (Client)        | Top-3 pairing result cards.                                         |
+| `FieldNoteCard`    | `.tsx` (RSC)           | Index row.                                                          |
+| `Colophon`         | `.tsx` (RSC)           | Page footer colophon.                                               |
+| `TypeSet`          | `.tsx` (RSC)           | Prose wrapper enforcing body typography.                            |
 
 React Server Components by default. Client components only where interactivity demands it (RegisterFilters, QuizFlow, QuizQuestion, QuizResult).
 
@@ -388,10 +393,10 @@ Styles: `src/styles/` with `tokens.css`, `reset.css`, `typography.css`, `layout.
 ### 7.1 Empty &amp; first-build
 
 - **Before first specimen**: home hero shows "Forthcoming" placeholder. Never live.
-- **Stage with no specimens** (Savant at launch): stage intro + italic "*No specimens catalogued in this stage yet.*" No CTA.
-- **Register with zero filter matches**: italic "*No pairings match these filters.*" Filters themselves are the reset.
-- **Quiz result with no exact pairing**: show top three *catalog* pairings with "*Not yet catalogued in a specimen — here's the data.*"
-- **Pen detail with zero specimens**: shows attributes; "*This pen has not yet been catalogued in a specimen.*" (common for newly added catalog entries).
+- **Stage with no specimens** (Savant at launch): stage intro + italic "_No specimens catalogued in this stage yet._" No CTA.
+- **Register with zero filter matches**: italic "_No pairings match these filters._" Filters themselves are the reset.
+- **Quiz result with no exact pairing**: show top three _catalog_ pairings with "_Not yet catalogued in a specimen — here's the data._"
+- **Pen detail with zero specimens**: shows attributes; "_This pen has not yet been catalogued in a specimen._" (common for newly added catalog entries).
 
 ### 7.2 Loading
 
@@ -404,7 +409,7 @@ Styles: `src/styles/` with `tokens.css`, `reset.css`, `typography.css`, `layout.
 
 - **Invalid CMS data** → Payload validation errors at save time (collection hooks validate), and at build time (zod-at-boundary for catalog index generation).
 - **Missing image** → Payload prevents save; build catches in case of stale reference.
-- **404**: single quiet page. Editorial New italic headline *"A page that does not appear in the catalogue."*, rule, caps link to `/`.
+- **404**: single quiet page. Editorial New italic headline _"A page that does not appear in the catalogue."_, rule, caps link to `/`.
 - **500**: Payload admin and API handle via Next.js error boundary; quiet error page.
 
 ### 7.4 First-time visitor
@@ -437,13 +442,13 @@ Covered in §7 above and §4.7 Quiz. Additional notes:
 
 Unchanged from prior spec. Additions:
 
-| Context | Copy |
-|---|---|
-| Home quiz invitation | `New to pens? Begin with the quiz.` |
-| Register header subline | `Pens and papers, catalogued for future reference.` |
-| Quiz progress line | (hairline, no text) |
-| Quiz back | `← Back` (tracked caps) |
-| Quiz result empty | `No pairings match these answers yet. The catalogue is still growing.` |
+| Context                 | Copy                                                                   |
+| ----------------------- | ---------------------------------------------------------------------- |
+| Home quiz invitation    | `New to pens? Begin with the quiz.`                                    |
+| Register header subline | `Pens and papers, catalogued for future reference.`                    |
+| Quiz progress line      | (hairline, no text)                                                    |
+| Quiz back               | `← Back` (tracked caps)                                                |
+| Quiz result empty       | `No pairings match these answers yet. The catalogue is still growing.` |
 
 ### 9.2 Voice
 
@@ -463,19 +468,19 @@ First-person Micah. Specific, sensory, adult. No emojis. No exclamation marks. N
 
 ### Stack
 
-| Layer | Pick | Reason |
-|---|---|---|
-| Framework | **Next.js 15 App Router** | Author's existing stack. RSC for editorial. Server routes for Payload. Static rendering for public pages with on-demand revalidation. |
-| CMS | **Payload CMS 3** | Installed *inside* Next.js — one codebase, one deploy. TS-first. Admin UI at `/admin`. Typed collections generate runtime types. Relations, drafts, live preview, versioning, access control all built-in. |
-| Database | **Postgres via Neon** | Serverless Postgres, generous free tier, works natively with Payload. Neon branches mirror git branches for preview environments. |
-| Media storage | **Vercel Blob** | Zero-config with Next.js on Vercel. Payload has an adapter. R2 alternative if cost grows. |
-| Styling | **Vanilla CSS + custom properties** | Editorial typography needs direct CSS; utility classes interfere. Four files: `tokens.css`, `reset.css`, `typography.css`, `layout.css`. |
-| MDX | Not used directly | Payload Lexical rich text is the essay source. Lexical → HTML serializer at render time. MDX dropped (CMS-first). |
-| Type safety | **TypeScript strict** + Payload's generated types | End-to-end typed from admin → DB → page. |
-| Hosting | **Vercel** | Next.js-native. Preview deploys on PRs. Neon integration official. Blob integration official. |
-| Fonts | **Fontshare self-hosted** | `public/fonts/*.woff2` with `font-display: swap`. No third-party font CDN (privacy + perf). |
-| Testing | **Vitest** + **Playwright** | Unit tests for register index, quiz scoring, content utilities. E2E for quiz flow and admin authoring. |
-| Analytics | **Plausible** or none in Phase 1 | Deferred decision; no GA. |
+| Layer         | Pick                                              | Reason                                                                                                                                                                                                     |
+| ------------- | ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Framework     | **Next.js 15 App Router**                         | Author's existing stack. RSC for editorial. Server routes for Payload. Static rendering for public pages with on-demand revalidation.                                                                      |
+| CMS           | **Payload CMS 3**                                 | Installed _inside_ Next.js — one codebase, one deploy. TS-first. Admin UI at `/admin`. Typed collections generate runtime types. Relations, drafts, live preview, versioning, access control all built-in. |
+| Database      | **Postgres via Neon**                             | Serverless Postgres, generous free tier, works natively with Payload. Neon branches mirror git branches for preview environments.                                                                          |
+| Media storage | **Vercel Blob**                                   | Zero-config with Next.js on Vercel. Payload has an adapter. R2 alternative if cost grows.                                                                                                                  |
+| Styling       | **Vanilla CSS + custom properties**               | Editorial typography needs direct CSS; utility classes interfere. Four files: `tokens.css`, `reset.css`, `typography.css`, `layout.css`.                                                                   |
+| MDX           | Not used directly                                 | Payload Lexical rich text is the essay source. Lexical → HTML serializer at render time. MDX dropped (CMS-first).                                                                                          |
+| Type safety   | **TypeScript strict** + Payload's generated types | End-to-end typed from admin → DB → page.                                                                                                                                                                   |
+| Hosting       | **Vercel**                                        | Next.js-native. Preview deploys on PRs. Neon integration official. Blob integration official.                                                                                                              |
+| Fonts         | **Fontshare self-hosted**                         | `public/fonts/*.woff2` with `font-display: swap`. No third-party font CDN (privacy + perf).                                                                                                                |
+| Testing       | **Vitest** + **Playwright**                       | Unit tests for register index, quiz scoring, content utilities. E2E for quiz flow and admin authoring.                                                                                                     |
+| Analytics     | **Plausible** or none in Phase 1                  | Deferred decision; no GA.                                                                                                                                                                                  |
 
 ### Runtime architecture
 
@@ -503,22 +508,22 @@ Target: under **200 packages** transitive (Payload + Postgres driver brings weig
 
 ## 11. Performance Budget
 
-| Target | Budget |
-|---|---|
-| Lighthouse Performance (editorial) | ≥ 95 |
-| Lighthouse Accessibility | ≥ 95 |
-| Lighthouse Best Practices | ≥ 95 |
-| Lighthouse SEO | ≥ 95 |
-| First Contentful Paint | ≤ 1.2 s |
-| Largest Contentful Paint | ≤ 1.8 s |
-| Total Blocking Time | ≤ 100 ms |
-| Cumulative Layout Shift | ≤ 0.02 |
-| Client JS on editorial pages | 0 KB gz (nav may contribute trivially) |
-| Client JS on `/register` | ≤ 25 KB gz |
-| Client JS on `/quiz` | ≤ 30 KB gz |
-| `catalog.json` on `/quiz` | ≤ 120 KB gz at 300 entries |
-| Total CSS | ≤ 28 KB gz |
-| Web fonts | ≤ 150 KB gz, 4 faces max |
+| Target                             | Budget                                 |
+| ---------------------------------- | -------------------------------------- |
+| Lighthouse Performance (editorial) | ≥ 95                                   |
+| Lighthouse Accessibility           | ≥ 95                                   |
+| Lighthouse Best Practices          | ≥ 95                                   |
+| Lighthouse SEO                     | ≥ 95                                   |
+| First Contentful Paint             | ≤ 1.2 s                                |
+| Largest Contentful Paint           | ≤ 1.8 s                                |
+| Total Blocking Time                | ≤ 100 ms                               |
+| Cumulative Layout Shift            | ≤ 0.02                                 |
+| Client JS on editorial pages       | 0 KB gz (nav may contribute trivially) |
+| Client JS on `/register`           | ≤ 25 KB gz                             |
+| Client JS on `/quiz`               | ≤ 30 KB gz                             |
+| `catalog.json` on `/quiz`          | ≤ 120 KB gz at 300 entries             |
+| Total CSS                          | ≤ 28 KB gz                             |
+| Web fonts                          | ≤ 150 KB gz, 4 faces max               |
 
 Images: AVIF with WebP fallback via `next/image` + Payload's upload plugin. Explicit dimensions enforced in schema (Payload's image handler). Lazy loading below the fold only.
 
@@ -537,6 +542,7 @@ Images: AVIF with WebP fallback via `next/image` + Payload's upload plugin. Expl
 - Fontshare faces with `font-display: swap` and system-serif fallback (minimizes FOUT shift).
 
 Quiz accessibility:
+
 - Each question is a proper `<fieldset>` with a visible `<legend>`.
 - Options are real radio inputs styled as typography; label clicks work.
 - Progress indicator is `aria-hidden` if purely decorative, or `role="progressbar"` with `aria-valuenow`.
@@ -693,14 +699,14 @@ None blocking. Resolved later by implementer or the next session:
 
 Not a commitment — a shape.
 
-| Milestone | Work |
-|---|---|
-| **Week 1** | Next.js + Payload scaffolding. Postgres connected. Collections defined. Admin running locally. |
+| Milestone  | Work                                                                                                                              |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Week 1** | Next.js + Payload scaffolding. Postgres connected. Collections defined. Admin running locally.                                    |
 | **Week 2** | Editorial pages: Catalogue home, Specimen entry, Stage views, Field Notes. Typography, layout, tokens. First specimen end-to-end. |
-| **Week 3** | Register: list views, Pen detail, Paper detail, filters. `catalog.json` build pipeline. |
-| **Week 4** | Quiz flow + scoring. Result page. Edge cases. Accessibility pass. |
-| **Week 5** | Seed content authoring. Lighthouse pass. Domain + deploy. Launch. |
+| **Week 3** | Register: list views, Pen detail, Paper detail, filters. `catalog.json` build pipeline.                                           |
+| **Week 4** | Quiz flow + scoring. Result page. Edge cases. Accessibility pass.                                                                 |
+| **Week 5** | Seed content authoring. Lighthouse pass. Domain + deploy. Launch.                                                                 |
 
 ---
 
-*Spec drafted 2026-04-17. Locked for first implementation pass.*
+_Spec drafted 2026-04-17. Locked for first implementation pass._
